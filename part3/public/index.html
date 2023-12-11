@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tech Class Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #282c34;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #61dafb;
+        margin-top: 20px;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #353b45;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffffff;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #4d5563;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: #282c34;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: #61dafb;
+        background-color: #f0f0f0;
+    }
+
+    button {
+        background-color: #61dafb;
+        color: #ffffff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #4fa3d1;
+    }
+
+    #seatsRemaining {
+        margin-top: 10px;
+        color: #ffffff;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Fetch time slots from the server
+        $.ajax({
+            url: '/get-time-slots', // Update the URL based on your server route
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Populate options dynamically
+                var select = $('#timeSlot');
+                data.forEach(function (slot) {
+                    var option = $('<option>', {
+                        value: slot.id,
+                        text: `${slot.date},   ${slot.start_time} – ${slot.end_time}, ${slot.total_seats} seats remaining`
+                    });
+                    select.append(option);
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching time slots:', error);
+            }
+        });
+    });
+</script>
+
+<body>
+    <h1>Web Technology Class Project Registration</h1>
+    <form action="/submit" method="post">
+        <!-- Input fields for student information -->
+        <!-- <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required pattern="\d{8}" placeholder="8-digit ID"> -->
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required pattern="[A-Za-z]+" placeholder="First Name">
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required pattern="[A-Za-z]+" placeholder="Last Name">
+
+        <label for="projectTitle">Project Title:</label>
+        <input type="text" id="projectTitle" name="projectTitle" required placeholder="Project Title">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            placeholder="abc@def.com">
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required pattern="\d{3}-\d{3}-\d{4}"
+            placeholder="Phone Number (e.g., 999-999-9999)">
+
+
+        <!-- Dropdown for selecting time slot -->
+        <!-- <label for="timeSlot">Select Time Slot:</label>
+        <select id="timeSlot" name="timeSlot">
+            <option value="">Choose a option</option>
+            <option value="1">4/19/2070, 6:00 PM – 7:00 PM, 6 seats remaining</option>
+            <option value="2">4/19/2070, 7:00 PM – 8:00 PM, 5 seats remaining</option>
+            <option value="3">4/19/2070, 8:00 PM – 9:00 PM, 3 seats remaining</option>
+            <option value="4">4/19/2070, 6:00 PM – 7:00 PM, 2 seats remaining</option>
+            <option value="5">4/19/2070, 7:00 PM – 8:00 PM, 4 seats remaining</option>
+            <option value="6">4/19/2070, 8:00 PM – 9:00 PM, 0 seats remaining</option>
+        </select> -->
+        <!-- Populate options dynamically based on server response -->
+        <label for="timeSlot">Select Time Slot:</label>
+        <select id="timeSlot" name="timeSlot">
+            <option value="">Choose an option</option>
+        </select>
+
+        <!-- Display available seats for the selected time slot -->
+        <p id="seatsRemaining"></p>
+
+        <!-- Submit button -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>

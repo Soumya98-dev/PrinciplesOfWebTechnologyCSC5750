@@ -1,0 +1,157 @@
+<!-- students.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #212529;
+            /* Dark background color */
+            color: #ffffff;
+            /* Text color */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #212529;
+            /* Dark background color */
+            color: #ffffff;
+            /* Text color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 2px solid #444;
+        }
+
+        th,
+        td {
+            padding: 15px 20px;
+            /* padding: 15px; */
+            text-align: left;
+            border-bottom: 2px solid #444;
+            /* Darker border color */
+            border-right: 1px solid #444;
+            /* Darker border color */
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #ffffff;
+            border-top: 2px solid #444;
+            /* Darker border color */
+        }
+
+        tr {
+            transition: background-color 0.3s;
+        }
+
+        tr:hover {
+            background-color: #444;
+            /* Darker background on hover */
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Student List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Project Title</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <!-- <th>Time Slot</th> -->
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the students data and display each student -->
+            <% students.forEach(student=> { %>
+                <tr>
+                    <!-- <td>
+                        <%= student.id %>
+                    </td> -->
+                    <td>
+                        <%= student.id.toString().padStart(8, '0' ) %>
+                    </td>
+
+                    <td>
+                        <%= student.first_name %>
+                    </td>
+                    <td>
+                        <%= student.last_name %>
+                    </td>
+                    <td>
+                        <%= student.project_title %>
+                    </td>
+                    <td>
+                        <%= student.email %>
+                    </td>
+                    <td>
+                        <%= student.phone %>
+                    </td>
+                    <!-- <td>
+                        <%= student.time_slot_id %>
+                    </td> -->
+                    <!-- <td>
+                        <%= student.date %>
+                    </td>
+                    <td>
+                        <%= student.start_time %>
+                    </td>
+                    <td>
+                        <%= student.end_time %>
+                    </td> -->
+                    <td>
+                        <%= student.formatted_date %>
+                    </td>
+                    <td>
+                        <%= student.formatted_start_time %>
+                    </td>
+                    <td>
+                        <%= student.formatted_end_time %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+    <a href="/">Go to the Registration form</a>
+</body>
+
+</html>
