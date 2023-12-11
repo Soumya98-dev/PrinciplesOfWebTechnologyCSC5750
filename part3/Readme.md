@@ -69,3 +69,18 @@ To install the dependencies, run the following command:
 ```bash
 npm install
 ```
+![image](https://github.com/Soumya98-dev/PrinciplesOfWebTechnologyCSC5750/assets/94994681/0305f240-e30b-4985-b298-cf3cb8a3f4da)
+
+![image](https://github.com/Soumya98-dev/PrinciplesOfWebTechnologyCSC5750/assets/94994681/d203553e-812a-4fec-a513-a0beb63a8658)
+
+![image](https://github.com/Soumya98-dev/PrinciplesOfWebTechnologyCSC5750/assets/94994681/2d3a0b16-88df-4d38-9414-79903841513c)
+
+
+
+
+
+
+
+
+
+
